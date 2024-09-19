@@ -1,9 +1,12 @@
 import time
 
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from locators.locator import Locators
 
@@ -31,6 +34,8 @@ class CreateAccountPage():
         self.zipcode_id = Locators.zipcode_id
         self.mobNum_id = Locators.mobNum_id
         self.createAccButton_id = Locators.createAccButton_id
+        self.accCreated_id = Locators.accCreated_id
+        self.continueB_id = Locators.continueB_id
 
     def title(self):
         self.driver.find_element(By.ID, self.title_id).click()
@@ -108,3 +113,28 @@ class CreateAccountPage():
 
     def createButtonClick(self):
         self.driver.find_element(By.XPATH, self.createAccButton_id).click()
+        time.sleep(2)
+
+    def verify_account(self):
+        try:
+            print("hello")
+            element = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, self.accCreated_id))
+            )
+            print("element found")
+            title = element.text
+            print(f"Element text: {title}")
+            assert "congratulations" in title.lower()
+            print("account created successfully")
+            time.sleep(2)
+            print("success")
+            self.driver.find_element(By.XPATH, self.continueB_id).click()
+
+        except TimeoutException:
+            print("Element not found within the given time.")
+        except AssertionError:
+            print(f"Assertion failed. Expected 'congratulations', but got '{title}'.")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+
+        time.sleep(60)

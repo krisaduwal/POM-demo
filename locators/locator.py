@@ -28,3 +28,14 @@ class Locators():
     zipcode_id = '//*[@id="zipcode"]'
     mobNum_id = '//*[@id="mobile_number"]'
     createAccButton_id = '//*[@id="form"]/div/div/div/div[1]/form/button'
+
+    # verify element
+    accCreated_id = '//*[@id="form"]/div/div/div/p[1]'
+
+    # continue button
+    continueB_id = '//*[@id="form"]/div/div/div/div/a'
+
+    # login elements
+    logEmail_id = '//*[@id="form"]/div/div/div[1]/div/form/input[2]'
+    logPassword_id = '//*[@id="form"]/div/div/div[1]/div/form/input[3]'
+    logInButton_id = '//*[@id="form"]/div/div/div[1]/div/form/button'

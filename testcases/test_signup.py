@@ -23,8 +23,8 @@ class SignUp(unittest.TestCase):
 
         signup = SignupPage(driver)
         signup.initialButtonClick()
-        signup.enter_username("kriss")
-        signup.enter_email("kriss@g.com")
+        signup.enter_username("manny")
+        signup.enter_email("manny@g.com")
         signup.signUpButtonClick()
 
         time.sleep(2)

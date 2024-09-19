@@ -17,7 +17,7 @@ class CreateAccount(SignUp):
         create = CreateAccountPage(self.driver)
 
         create.title()
-        create.enter_password("9876543210")
+        create.enter_password("9876503210")
         create.choose_day('8')
         create.choose_month('12')
         create.choose_year('2001')
@@ -33,6 +33,7 @@ class CreateAccount(SignUp):
         create.enter_zipcode("9876")
         create.enter_number("9876543211")
         create.createButtonClick()
+        create.verify_account()
 
     @classmethod
     def tearDownClass(cls):
